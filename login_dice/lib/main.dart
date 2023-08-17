@@ -47,81 +47,87 @@ class _LogInState extends State<LogIn> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // const Padding(padding: EdgeInsets.only(top: 50)),
-            const SizedBox(height: 50),
-            const Center(
-              child: Image(
-                image: AssetImage('image/chef.gif'),
-                width: 170,
-                height: 190,
-              ),
-            ),
-            Form(
-              child: Theme(
-                data: ThemeData(
-                  primaryColor: Colors.teal,
-                  inputDecorationTheme: const InputDecorationTheme(
-                    labelStyle: TextStyle(color: Colors.teal, fontSize: 15),
-                  ),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // const Padding(padding: EdgeInsets.only(top: 50)),
+              const SizedBox(height: 50),
+              const Center(
+                child: Image(
+                  image: AssetImage('image/chef.gif'),
+                  width: 170,
+                  height: 190,
                 ),
-                child: Container(
-                  padding: const EdgeInsets.all(40),
-                  child: Column(
-                    children: [
-                      TextField(
-                        controller: controller,
-                        decoration:
-                            const InputDecoration(labelText: 'Enter "dice"'),
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      TextField(
-                        controller: controller2,
-                        decoration:
-                            const InputDecoration(labelText: 'Enter Password'),
-                        keyboardType: TextInputType.text,
-                        obscureText: true,
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(100, 50),
-                            backgroundColor: Colors.orangeAccent),
-                        child: const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                          size: 35,
+              ),
+              Form(
+                child: Theme(
+                  data: ThemeData(
+                    primaryColor: Colors.teal,
+                    inputDecorationTheme: const InputDecorationTheme(
+                      labelStyle: TextStyle(color: Colors.teal, fontSize: 15),
+                    ),
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.all(40),
+                    child: Column(
+                      children: [
+                        TextField(
+                          autofocus: true,
+                          controller: controller,
+                          decoration:
+                              const InputDecoration(labelText: 'Enter "dice"'),
+                          keyboardType: TextInputType.emailAddress,
                         ),
-                        onPressed: () {
-                          if (controller.text == 'dice' &&
-                              controller2.text == '1234') {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Dice(),
-                              ),
-                            );
-                          } else if (controller.text == 'dice' &&
-                              controller2.text != '1234') {
-                            showSnackBar2(context);
-                          } else if (controller.text != 'dice' &&
-                              controller2.text == '1234') {
-                            showSnackBar3(context);
-                          } else {
-                            showSnackBar(context);
-                          }
-                        },
-                      ),
-                    ],
+                        TextField(
+                          controller: controller2,
+                          decoration: const InputDecoration(
+                              labelText: 'Enter Password'),
+                          keyboardType: TextInputType.text,
+                          obscureText: true,
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(100, 50),
+                              backgroundColor: Colors.orangeAccent),
+                          child: const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                            size: 35,
+                          ),
+                          onPressed: () {
+                            if (controller.text == 'dice' &&
+                                controller2.text == '1234') {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Dice(),
+                                ),
+                              );
+                            } else if (controller.text == 'dice' &&
+                                controller2.text != '1234') {
+                              showSnackBar2(context);
+                            } else if (controller.text != 'dice' &&
+                                controller2.text == '1234') {
+                              showSnackBar3(context);
+                            } else {
+                              showSnackBar(context);
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
